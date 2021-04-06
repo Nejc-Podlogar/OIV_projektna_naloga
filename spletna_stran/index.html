@@ -5,20 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.amonDmtxlsiasy1Eff1cOQHaHa%26pid%3DApi&f=1">
     <!-- Uporabljene ikone -->
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
     <script src="./javascript.js"></script>
-    <title>Document</title>
+    <title>Spletni napadi</title>
 </head>
 <body>
     
-    <nav>
-        <div class="ocenaTxt">
-            Ocena:
+    <div class="header">
+        <div class="header-card">
+            <div class="result">
+                <div class="ocenaTxt">
+                    Ocena:
+                </div>
+                <div id="liveScore" class="liveScore">1111</div>
+            </div>
+            <button class="resetScore" type="reset" onclick="resetCounter()"><i class="lni lni-reload"></i></button>
         </div>
-        <div id="liveScore" class="liveScore">0000</div>
-        <button class="resetScore" type="reset"><i class="lni lni-reload"></i></button>
-    </nav>
+    </div>
 
     <div class="main-div">
         <h1>Naučite se o spletnih napadih.</h1>
