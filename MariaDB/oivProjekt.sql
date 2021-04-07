@@ -14,14 +14,26 @@
 -- Dumping structure for table oivprojekt.answers
 DROP TABLE IF EXISTS `answers`;
 CREATE TABLE IF NOT EXISTS `answers` (
-  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `answer` varchar(128) NOT NULL,
   `isCorrect` tinyint(1) DEFAULT NULL,
-  `fk_question` int(11) unsigned NOT NULL,
+  `fk_question` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`),
   KEY `fk_question` (`fk_question`),
   CONSTRAINT `FK_question_ID` FOREIGN KEY (`fk_question`) REFERENCES `questions` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table oivprojekt.leaderboard
+DROP TABLE IF EXISTS `leaderboard`;
+CREATE TABLE IF NOT EXISTS `leaderboard` (
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `player_name` varchar(64) NOT NULL,
+  `score` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
@@ -31,7 +43,7 @@ DROP TABLE IF EXISTS `questions`;
 CREATE TABLE IF NOT EXISTS `questions` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `question` varchar(128) NOT NULL,
-  `difficulty` int(11) unsigned NOT NULL,
+  `difficulty` int(10) unsigned NOT NULL,
   `description` varchar(256) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
