@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS `answers`;
 CREATE TABLE IF NOT EXISTS `answers` (
   `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `answer` varchar(128) NOT NULL,
-  `isCorrect` tinyint(4) NOT NULL DEFAULT 0,
+  `isCorrect` tinyint(1) DEFAULT NULL,
   `fk_question` int(11) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`),
