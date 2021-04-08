@@ -103,6 +103,7 @@ function buildList(val){
                 <div class="smallHead">${i + 1}</div>
                 <div>${list[i]['ocena']}</div>
                 <div>${list[i]['oseba']}</div>
+                <div></div>
                 </div>
                 </li>
             `)
