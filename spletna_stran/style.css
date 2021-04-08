@@ -13,15 +13,22 @@ p {
     font-size: 16px;
     text-transform: lowercase;
 }
-
+ul{
+    padding-left: 0px;
+}
+li{
+    list-style: none;
+    border-bottom: 1px solid lightgray;
+}
 .header{
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    position: relative;
+    position: absolute;
     top: 0;
-    width: 100%;
+    right: 0;
+    width: auto;
     height: auto;
 }
 .header *{
@@ -37,8 +44,26 @@ p {
     background-color: rgba(51, 48, 48, 0.87);
     box-shadow: 0 0 10px white;
     border-radius: 15px;
-    margin: 20px;
+    margin: 20px 20px 5px 20px;
     padding: 10px;;
+}
+.scoreBoard{
+    color: white;
+    background-color: rgb(165, 103, 4);
+    border: 1px solid rgb(165, 103, 0);
+    padding: 10px;
+    width: 175px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 18px;
+    z-index: 999;
+}
+.scoreBoard:focus{
+    border-color: white;
+    outline: none;
+}
+.scoreBoard:disabled{
+    opacity: 0.5;
 }
 .result{
     display: flex;
@@ -79,6 +104,7 @@ p {
     color: white;
     text-transform: uppercase;
     font-size: 30px;
+    margin-top: 10vh;
 }
 
 .cards-group{
@@ -88,16 +114,103 @@ p {
     justify-content: center;
     align-items: center;
     width: 60%;
-    position: fixed;
-    top: 30vh;
+    position: relative;
+    top: 10px;
 }
 
 .card{
-    width: 300px;
-    height: 300px;
+    width: 20vh;
+    height: 20vh;
     border-radius: 15px;
     border: 2px solid black;
     background-color: rgba(51, 48, 48, 0.87);
     box-shadow: 0 0 10px white;
     margin: 10px;
+    font-size: 100px;
+    color: white;
+}
+.card:focus{
+    outline: none;
+    border-color: white;
+}
+.card:disabled{
+    opacity: 0.5;
+}
+
+/* Popup designs */
+/* Scoreboard */
+.scorePopUp{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    max-height: 80vh;
+    width: 450px;
+    position: absolute;
+    top: 10vh;
+    left: calc(100vh - 200px);
+    background-color: rgb(39, 37, 37);
+    border: 2px solid black;
+    box-shadow: inset 0 0 5px black;
+    box-shadow: 0 0 10px white;
+    border-radius: 15px;
+    color: white;
+    padding-bottom: 30px;
+}
+.scorePopUp h1{
+    text-transform: uppercase;
+}
+.listRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.listRow div{
+    text-transform: uppercase;
+    width: 150px;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+}
+.smallHead{
+    width: 30px !important; 
+}
+.listLine{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.listLine div{
+    width: 150px;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+}
+.closeBtn{
+    background-color: rgb(165, 103, 4);
+    border: 1px solid rgb(165, 103, 0);
+    color: white;
+    padding: 10px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 16px;
+    align-self: flex-end;
+    margin-right: 30px;
+}
+
+/* Current Question */
+.qPopUp{
+    display: none;
+    width: 100vh;
+    min-height: 100px;
+    height: auto;
+    max-height: 80vh;
+    position: absolute;
+    left: 50vh;
+    top: 10vh;
+    background-color: rgb(39, 37, 37);
+    border: 2px solid black;
+    box-shadow: inset 0 0 5px black;
+    box-shadow: 0 0 10px white;
+    border-radius: 15px;
 }

@@ -8,7 +8,8 @@
     <link rel="icon" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.amonDmtxlsiasy1Eff1cOQHaHa%26pid%3DApi&f=1">
     <!-- Uporabljene ikone -->
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
-    <script src="./javascript.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="javascript.js"></script>
     <title>Spletni napadi</title>
 </head>
 <body>
@@ -19,24 +20,49 @@
                 <div class="ocenaTxt">
                     Ocena:
                 </div>
-                <div id="liveScore" class="liveScore">1111</div>
+                <div id="liveScore" class="liveScore"></div>
             </div>
             <button class="resetScore" type="reset" onclick="resetCounter()"><i class="lni lni-reload"></i></button>
         </div>
+        <button id="scoreBoard" class="scoreBoard" onclick="buildList(true)">Lestvica</button>
     </div>
 
     <div class="main-div">
         <h1>Naučite se o spletnih napadih.</h1>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
         <div class="cards-group">
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
+            <button id="1" class="card" onclick="getQuestion(1)">1</button>
+            <button id="2" disabled class="card" onclick="getQuestion(2)">2</button>
+            <button id="3" disabled class="card" onclick="getQuestion(3)">3</button>
+            <button id="4" disabled class="card" onclick="getQuestion(4)">4</button>
+            <button id="5" disabled class="card" onclick="getQuestion(5)">5</button>
+            <button id="6" disabled class="card" onclick="getQuestion(6)">6</button>
+            <button id="7" disabled class="card" onclick="getQuestion(7)">7</button>
+            <button id="8" disabled class="card" onclick="getQuestion(8)">8</button>            
+            <button id="9" disabled class="card" onclick="getQuestion(9)">9</button>            
+            <button id="10" disabled class="card" onclick="getQuestion(10)">10</button>            
         </div>
     </div>
+
+    <!-- Popup blocks -->
+    <!-- Scoreboard popUp -->
+    <div class="scorePopUp">
+        <h1>Lestvica:</h1>
+        <div id="scoreList" class="scoreList">
+            <div class="listRow">
+                <div class="smallHead">Mesto:</div>
+                <div>Ocena:</div>
+                <div>Oseba:</div>
+            </div>
+        </div>
+        <button class="closeBtn" onclick="buildList(false)">Zapri</button>
+    </div>
+
+    <!-- Question popUp -->
+    <div class="qPopUp">
+
+    </div>
+
 
 </body>
 </html>
