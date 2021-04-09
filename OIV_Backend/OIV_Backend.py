@@ -56,9 +56,65 @@ def get_question():
             answers.append(answer)
 
         ret['answers'] = answers
-
+        ret['success'] = True
         return jsonify(ret)
 
+    except mariadb.Error as e:
+        print("{}".format(e))
+        ret['success'] = False
+        return jsonify(ret)
+
+@app.route('/leaderboard', methods=['POST'])
+def leaderboard():
+    ret = {}
+    try:
+        cursor = conn.cursor()
+
+        sql = "SELECT * FROM leaderboard ORDER BY score DESC, time ASC LIMIT 10;";
+        cursor.execute(sql)
+
+        leaders = cursor.fetchall()
+
+        leaderboard_arr = []
+        for leader in leaders:
+            lead = {}
+            lead['player_name'] = leader[1]
+            lead['score'] = leader[2]
+            lead['time'] = leader[3]
+
+            leaderboard_arr.append(lead)
+
+        ret['leaderboard'] = leaderboard_arr
+        ret['success'] = True
+        return jsonify(ret)
+
+    except mariadb.Error as e:
+        print("{}".format(e))
+        ret['success'] = False
+        return jsonify(ret)
+
+@app.route('/newScore', methods=['POST'])
+def new_score():
+    ret = {}
+
+    try:
+        content = request.get_json()
+        player_name = content['player_name']
+        score = content['score']
+        time = content['time']
+
+        if (player_name is None or score is None or time is None):
+            ret['success'] = False
+            return jsonify(ret)
+
+        cursor = conn.cursor()
+        sql = "INSERT INTO leaderboard (player_name, score, time) VALUES ('{}', {}, {});".format(player_name, int(score), int(time));
+        cursor.execute(sql)
+
+        conn.commit()
+
+        ret['success'] = True
+        return jsonify(ret)
     except mariadb.Error as e:
         print("{}".format(e))
         ret['success'] = False
