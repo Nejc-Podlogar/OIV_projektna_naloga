@@ -8,9 +8,9 @@ CORS(app)
 
 conn = mariadb.connect(
     user="root",
-    password="admin123",
+    password="ynpXyi2NmKARwX",
     host="127.0.0.1",
-    port=5342,
+    port=3306,
     database="oivprojektna"
 )
 

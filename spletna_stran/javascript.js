@@ -86,11 +86,8 @@ function buildList(val){
         return;
     }
 
-    let list = [
-        {'ocena': 1, 'oseba': 'Nejc'},
-        {'ocena': 2, 'oseba': 'David'},
-        {'ocena': 3, 'oseba': 'Jakob'}
-    ];
+    
+    
     $('#fullList').empty();
     $("#scoreList").append($('<ul id="fullList"></ul>'));
     
