@@ -42,6 +42,7 @@ def get_question():
         cursor.execute(sql)
 
         data_answers = cursor.fetchall()
+        random.shuffle(data_answers)
 
         question = {}
         question['question'] = data_questions[random_index][1]
