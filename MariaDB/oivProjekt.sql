@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `answers` (
   UNIQUE KEY `ID` (`ID`),
   KEY `fk_question` (`fk_question`),
   CONSTRAINT `FK_question_ID` FOREIGN KEY (`fk_question`) REFERENCES `questions` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table oivprojekt.answers: ~32 rows (approximately)
 DELETE FROM `answers`;
@@ -71,13 +71,14 @@ CREATE TABLE IF NOT EXISTS `leaderboard` (
   `time` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table oivprojekt.leaderboard: ~0 rows (approximately)
+-- Dumping data for table oivprojekt.leaderboard: ~1 rows (approximately)
 DELETE FROM `leaderboard`;
 /*!40000 ALTER TABLE `leaderboard` DISABLE KEYS */;
 INSERT INTO `leaderboard` (`ID`, `player_name`, `score`, `time`) VALUES
-	(1, 'Jakob Jošt', 1000000, 0);
+	(1, 'Jakob Jošt', 100, 11),
+	(2, 'David Kovač', 69, 54);
 /*!40000 ALTER TABLE `leaderboard` ENABLE KEYS */;
 
 -- Dumping structure for table oivprojekt.questions
@@ -89,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `description` varchar(256) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table oivprojekt.questions: ~8 rows (approximately)
 DELETE FROM `questions`;
