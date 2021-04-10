@@ -20,6 +20,7 @@ def get_question():
 
     try:
         content = request.get_json()
+        print(content)
         difficulty = content['difficulty']
 
         if (difficulty is None):
