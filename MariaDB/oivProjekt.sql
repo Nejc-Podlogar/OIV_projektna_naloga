@@ -68,17 +68,17 @@ CREATE TABLE IF NOT EXISTS `leaderboard` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `player_name` varchar(64) NOT NULL,
   `score` int(10) unsigned NOT NULL,
-  `time` int(10) unsigned NOT NULL,
+  `time` float unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table oivprojekt.leaderboard: ~1 rows (approximately)
+-- Dumping data for table oivprojekt.leaderboard: ~2 rows (approximately)
 DELETE FROM `leaderboard`;
 /*!40000 ALTER TABLE `leaderboard` DISABLE KEYS */;
 INSERT INTO `leaderboard` (`ID`, `player_name`, `score`, `time`) VALUES
-	(1, 'Jakob Jošt', 100, 11),
-	(2, 'David Kovač', 69, 54);
+	(1, 'Jakob Jošt', 100, 11.1),
+	(2, 'David Kovač', 69, 54.6);
 /*!40000 ALTER TABLE `leaderboard` ENABLE KEYS */;
 
 -- Dumping structure for table oivprojekt.questions
