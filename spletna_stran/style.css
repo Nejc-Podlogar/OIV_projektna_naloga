@@ -110,7 +110,10 @@ li{
     font-size: 30px;
     margin-top: 10vh;
 }
-
+.main-div p{
+    text-shadow: 0 0 3px black;
+    font-size: 18px;
+}
 .cards-group{
     display: flex;
     flex-direction: row;

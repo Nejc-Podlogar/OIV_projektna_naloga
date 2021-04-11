@@ -34,6 +34,10 @@ function resetCounter(){
 function getQuestionVal(numbered){
     globalDifficulty = numbered;
     console.log(Number(numbered));
+    //Ko uporabnik začne z prvim vprašanjem, zabeležim cajt.
+    if(numbered == 1){
+        globalTime = new Date();
+    }
     // Pridobim podatke za vprašanje
     $.post(url + "/getQuestion",JSON.stringify({difficulty: numbered}), (result) => {
         console.log(result)
@@ -109,11 +113,17 @@ function answerSelected(isCorrect, allAnsw, currAnsw){
             $(`#${globalDifficulty + 1}`).prop('disabled', false);
         }else{
             $(`#${globalDifficulty}`).prop('disabled', true);
+            $("#newScore").prop('disabled', false);
             $(".resetScore").addClass("nextStep");
+            let endTime = new Date(); 
+            globalTime = (endTime - globalTime) / 1000;
         }
     }else{
         $(`#${globalDifficulty}`).prop('disabled', true);
-        $(".resetScore").addClass("nextStep");  
+        $("#newScore").prop('disabled', false);
+        $(".resetScore").addClass("nextStep"); 
+        let endTime = new Date(); 
+        globalTime = (endTime - globalTime) / 1000;
     }
     
     $("#cancelQ").prop('disabled', true)
