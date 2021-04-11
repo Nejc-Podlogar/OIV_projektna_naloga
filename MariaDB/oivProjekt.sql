@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `answers` (
   CONSTRAINT `FK_question_ID` FOREIGN KEY (`fk_question`) REFERENCES `questions` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8;
 
--- Dumping data for table oivprojekt.answers: ~32 rows (approximately)
+-- Dumping data for table oivprojekt.answers: ~140 rows (approximately)
 DELETE FROM `answers`;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
 INSERT INTO `answers` (`ID`, `answer`, `isCorrect`, `fk_question`) VALUES
@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   UNIQUE KEY `ID` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
--- Dumping data for table oivprojekt.questions: ~23 rows (approximately)
+-- Dumping data for table oivprojekt.questions: ~35 rows (approximately)
 DELETE FROM `questions`;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
 INSERT INTO `questions` (`ID`, `question`, `difficulty`, `description`) VALUES
@@ -208,37 +208,37 @@ INSERT INTO `questions` (`ID`, `question`, `difficulty`, `description`) VALUES
 	(2, 'Kaj je drugo ime za zaupnost podatkov?', 1, ' Drug izraz za zaupnost podatkov je zasebnost informacij. Doslednost, natančnost in zaupnost informacije pa govorijo o celovitosti informacij oz. podatkov.'),
 	(3, 'Katera varnostna implementacija uporablja biometrijo?', 1, 'Biometrija je proces zbiranja, proučevanja in shranjevanja podatkov o posameznikovih fizičnih lastnostih z namenom identifikacije in avtentikacije.'),
 	(4, 'Katera metoda se uporablja za preverjanje celovitosti podatkov?', 2, 'Vrednost kontrolne vsote bloka podatkov se izračuna in prenese s podatki. Po prejemu podatkov se ponovno izvede zgoščevanje kontrolne vsote. Izračunana vrednost se primerja s poslano vrednostjo, da se preveri celovitost podatkov.'),
-	(5, 'Kaj od naštetega ne moremo uporabiti da lahko zagotovimo zaupnost podatkov?', 2, 'Nadzor razlicic ne more zagotoviti zaupnosti podatkov, saj podatki niso odvisni od tega.'),
+	(5, 'Kaj od naštetega ne moremo uporabiti da lahko zagotovimo zaupnost podatkov?', 1, 'Nadzor razlicic ne more zagotoviti zaupnosti podatkov, saj podatki niso odvisni od tega.'),
 	(6, 'Kaj je razlog, da lahko notranje varnostne grožnje organizaciji povzročijo večjo škodo kot zunanje?', 2, 'Notranje grožnje lahko povzročijo večjo škodo kot zunanje, ker imajo notranji uporabniki neposreden dostop do stavbe in njenih infrastrukturnih naprav. Notranji uporabniki morda nimajo boljših hekerskih veščin kot zunanji napadalci.'),
 	(7, 'Katera karakteristika opisuje črva (worm)?', 1, 'Računalniški črv je program, ki vsebuje zlonamerno programsko opremo in se razmožuje z namenom širjenja na druge računalnike. Pogosto uporablja računalniško omrežje za širjenje, pri čemer se za dostop do njega zanaša na varnostne napake.'),
 	(8, 'Katero orodje se uporablja za pridobitev seznama odprtih vrat (ports) v omrežnih napravah?', 2, 'Orodje Nmap je optični bralnik vrat, ki se uporablja za določanje, katera vrata so odprta v določeni omrežni napravi. Uporabi se pred napadom.'),
-	(9, 'Katera vrsta napada omogoča napadalcu uporabo surove sile?', 2, 'DOPOLNI -STAŠA'),
-	(10, 'Kaj je glavna naloga DoS napada?', 3, 'DOPOLNI'),
-	(11, 'Kakšen je namen korenskega kompleta?', 4, 'DOPOLNI-'),
+	(9, 'Katera vrsta napada omogoča napadalcu uporabo surove sile?', 2, 'Razbijanje gesel je pogosta uporaba surove sile, saj napadalec vdira v račun s pomočjo večkratnih poskusov vnosa gesel iz slovarja.'),
+	(10, 'Kaj je glavna naloga DoS napada?', 3, 'Cilj (D)DoS napada je onemogočiti veliko spletno stran z majhno porabo računske moči .Napadalec želi najti mehanizem, pri katerem ni treba vložiti veliko truda, toda zahteve so za žrtev težke/drage za obdelavo.'),
+	(11, 'Kakšen je namen korenskega kompleta?', 4, 'Korenski komplet je skupek programov in kode, ki omogoča stalno ali dosledno neopazno prisotnost v računalniku. Cilji le teh so skriti zlonamerne vire (npr. procese, datoteke, vnose v register, ipd.) in dovoliti skrit dostop (zadnja vrata).'),
 	(12, 'Kako so zombiji uporabljeni v varnostnih napadih?', 3, 'Zombiji so okuženi računalniki, ki sestavljajo botnet. Zombiji se uporabljajo za izvajanje porazdeljenega napada DDoS (distributed denial of service).'),
 	(13, 'Kaj je najpogostejši cilj zastrupitve optimizacije iskalnikov?', 5, 'Zlonamerni uporabnik lahko ustvari optimizacijo iskalnika, tako da se zlonamerno spletno mesto prikaže višje v rezultatih iskanja. Zlonamerno spletno mesto običajno vsebuje zlonamerno programsko opremo ali pa se uporablja za pridobivanje informacij s tehnikami socialnega inženiringa.'),
-	(14, 'Kaj ne velja za ethernet omrežja?', 3, 'dopolni'),
+	(14, 'Kaj ne velja za ethernet omrežja?', 3, 'Ethernet omogoča povezljivost med gostitelji v lokalnem omrežju (LAN). Okvirji so naslovljeni na fizični naslov naprave (MAC). Switchi posredujejo okvirje na podlagi podatkov o lokaciji naslovov MAC; ni garancije, da se ne pošlje drugim gostiteljem! Ni varnosti (zaupnost, overjanje ali celovitost).'),
 	(15, ' Naprava, ki nadzoruje ali filtrira promet v omrežje ali iz njega, se imenuje?', 3, 'Požarni zid je omrežna naprava, ki se uporablja za filtriranje vhodnega, izhodnega prometa ali obojega.'),
 	(16, 'Koliko razredov digitalnih potrdil poznamo?', 4, 'Pozamo 5 različnih razredov, ki jih pa označimo od 0. - 4.'),
 	(17, 'Katera od trditev ne velja za mobilno škodljivo kodo?', 4, 'Mobilne aplikacije so izolirane. Vsaka se izvaja v ločenem izvajalnem okolju. Privzeto nimajo dostopa do datotečnega sistema, komponent strojne opreme, ipd.. Razlike napram tradicionalnim OS-om. Aplikacije nameščamo s pomočjo „App Storea“; tržnica: pod nadzorom proizvajalca (Apple) / odprta (Android).'),
 	(18, 'Kaj od naštetega je primer škodljive kode za iOS?', 4, 'Ikee je črv, ki izkorišča privzeta gesla za SSH. Napad je bil s strani ranljvosti na rootanih iPhoneih.'),
-	(19, ' Kaj od naštetega je namen standardiziranja sistemov upravljanja varovanja informacij - SUVI ?', 5, 'dopolni'),
+	(19, ' Kaj od naštetega je namen standardiziranja sistemov upravljanja varovanja informacij - SUVI ?', 5, ' Sistem SUIV podaja model za določitev, vpostavitev, delovanje, spremljanje, pregled, vzdrževanje, izboljševanje. uporablja se procesni pristop.'),
 	(20, 'Kaj ni metoda HTTP zahteve?', 5, 'Zahteve HTTP so sporočila, ki jih odjemalec pošlje za začetek dejanja v strežniku. Njihova začetna vrstica vsebuje tri elemente: metodo HTTP, glagol (kot je GET , PUT ali POST ) ali samostalnik (kot je HEAD ali OPTIONS ), ki opisuje dejanje, ki ga je treba izvesti.'),
-	(21, 'Katero od vprašanj o piškotkih ne velja?', 5, 'dopoln'),
+	(21, 'Katero od vprašanj o piškotkih ne velja?', 5, 'HTTP piškotek je majhen delček podatkov, ki ga strežnik pošlje spletnemu brskalniku. Brskalnik ga lahko shrani in ga pošlje s prihodnjimi zahtevami spletnega mesta. Upravlja seje; prijave, nakupovalni vozički, rezultati iger ali katero koli drugo stanje seje. Skrbi za personalizacijo; uporabniške nastavitve, teme in druge nastavitve. Sledi, snemanja in analiza vedenja uporabnikov.'),
 	(22, 'Kaj ni vprašanje Unix modela varnosti politike istega izvora?', 6, 'Pri Unix modelu varnosti nas zanima osebek (kdo?), predmeti (kaj?), in dostopne operacije (kako?).'),
-	(23, 'Kaj je namen politike istega izvora za HTTP odgovre?', 6, 'dopolniii'),
+	(23, 'Kaj je namen politike istega izvora za HTTP odgovre?', 6, 'SOP preprečuje, da bi Javascript na spletnem mestu napadalec.com neposredno pregledoval odgovore HTTP (tj. piksle v sliki), ne preprečuje pa, da nekdo izvede zahtevek.'),
 	(24, 'Zakaj varujemo povezavo (HTTPS)?', 7, 'ovezavo varuemo pred vrivanjem, prestrezanjem in spreminjanjem.'),
-	(25, 'Na katerem od naštetih nivojev se ne izvaja informacijska varnost?', 6, 'dopolniiiii'),
+	(25, 'Na katerem od naštetih nivojev se ne izvaja informacijska varnost?', 6, 'Informacijska varnost se izvaja na treh nivojih: Fizični/tehnični nivo (products - physical security), Nivo procesov/organizacijskih procesov (procedures - organizational security), Nivo posameznika/uporabnika (people - personal security).'),
 	(26, 'Kako deluje lokacijsko prestopno ponarejanje (spletnih) zahtevkov(Cross-Site RequestForgery(CSRF)) ?', 8, 'V napadu CSRF je uporabnik prevaran, da na žrtvenemu spletnemu mestu posreduje spletno zahtevo „v svojem imenu“.'),
 	(27, 'Kateri so dejavniki klasifikacije informacij?', 7, 'Dejavniki, ki vplivajo na to katero informacijo se označi kot zaupno, so: vrednost, starost informacije, ter podatek o tem ali je ta informacija morda že javna.'),
 	(28, 'Kaj so piškotki same site?', 7, 'Preprečevanje napadov CSRF: Piškotki ne označujejo, ali je pooblaščena prijava oddala zahtevo, saj so vključeni v vsako zahtevo (obseg); Piškotki SOP: Piškotki z eksplicitnimi domenami se pošljejo glede na ujemanjein poddomene. Piškotki spraznimi ali implicitnimi domenami se pošljejo samo na domeno, ki se točno ujema (in ne tudi poddomene).\n'),
 	(29, ' Kateri izmed naštetih modelov opiše SQL vrivanje ?', 9, 'SQL vrivanje deluje tako, da napadalec pošlje zlonamerno formo na žrtev, ki je v tem primeru strežnik. Ta izvede zlonamerno SQL poizvedbo na podatkovno bazo, ki posreduje naše podatke napadalcu.'),
-	(30, 'Kaj je lokacijsko prestopno skriptiranje -Cross Site Scripting(XSS) ?', 10, 'dopolni1'),
+	(30, 'Kaj je lokacijsko prestopno skriptiranje -Cross Site Scripting(XSS) ?', 10, 'Napad se zgodi, ko aplikacija prejme nezaupljive podatke in jih pošlje v spletni brskalnik brez ustreznega preverjanja.Napadalec lahko vrine skriptno kodo na strani, ki jih ustvari spletna aplikacija. Poznamo dva tipa napadov:Odsevni XSS; Napadalčeva skripta se uporabniku prikaže kot del „žrtvene“ spletne strani in Shranjen XSS; Napadalec zlonamerne kodo shrani v vir, ki ga upravlja spletna aplikacija, na primer v PB.'),
 	(31, ' Kaj je ugrabitev seje?', 8, 'Napadalec čaka, da se uporabnik prijavinato napadalec ukrade uporabnikov sejni žeton in s tem "ugrabi" sejo⇒napadalec lahko v imenu uporabnika izda samovoljne zahteve.'),
-	(32, 'Kako se zgodi napad na nivoju overjanja?', 9, 'dopolni2'),
-	(33, 'Kako se zgodi shranjen napad XSS?', 8, 'dopolni3'),
-	(34, 'Kako varno shranjujemo gesla v spletnih sistemih da so le ti čim bolj varni pred napadi?', 9, 'dopolni4'),
-	(35, 'Kaj ni cilj elektronskega podpisa?', 2, 'dopoln7');
+	(32, 'Kako se zgodi napad na nivoju overjanja?', 9, 'Možni napadi na nivoju overjanja so napadi s slovarjem, surovo silo, mavričnimi tabelami, podaljškom, s stranskim kanalom, napad na bitno zapopolnjevanje.'),
+	(33, 'Kako se zgodi shranjen napad XSS?', 8, 'Napad se zgodi, ko aplikacija prejme nezaupljive podatke in jih pošlje v spletni brskalnik brez ustreznega preverjanja.Napadalec lahko vrine skriptno kodo na strani, ki jih ustvari spletna aplikacija. Poznamo dva tipa napadov:Odsevni XSS; Napadalčeva skripta se uporabniku prikaže kot del „žrtvene“ spletne strani in Shranjen XSS; Napadalec zlonamerne kodo shrani v vir, ki ga upravlja spletna aplikacija, na primer v PB.'),
+	(34, 'Kako varno shranjujemo gesla v spletnih sistemih da so le ti čim bolj varni pred napadi?', 9, 'Težava shranjevanja gesel: tipične zgoščevalne funkcije se izvajajo prehitro. Omogoča uporabo GPU-jev za napad s surovo silo. Rešitev: uporaba namenskih zgoščevalnih funkcij, ki se izvajajo počasi. Ti algoritmi vključujejo “delovni faktor (ang. Workfactor)“, ki zveča kompleksnost izračuna. scrypt tudi zahteva velike količine pomnilnika v izračunih, kar še dodatno otežuje napad s surovo silo.Primeri: bcrypt, scrypt, PBKDF2, Argon2.'),
+	(35, 'Kaj ni cilj elektronskega podpisa?', 2, 'Cilji elektronskega podpisa so ohranjanje celovitosti sporočila, preverjanje identitete pošiljatelja (overjanje), preprečevanje pretvarjanja za drugo osebo, zagotavlja zaščito pred ponarejanjem, zagotavlja povezavo s podpisnikom, se ne da prenesti na drugi dokument, mora odkriti spremembe v podpisanem dokumentu.');
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
