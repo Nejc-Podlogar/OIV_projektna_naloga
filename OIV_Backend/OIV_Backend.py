@@ -6,17 +6,24 @@ import random
 app = Flask(__name__)
 CORS(app)
 
-conn = mariadb.connect(
-    user="root",
-    password="ynpXyi2NmKARwX",
-    host="127.0.0.1",
-    port=3306,
-    database="oivprojektna"
-)
+conn = None
+
+def connect_to_database():
+    return mariadb.connect(
+        user="root",
+        password="admin123",
+        # password="ynpXyi2NmKARwX",
+        host="127.0.0.1",
+        port=5342,
+        # port=3306,
+        database="oivprojektna"
+    )
 
 @app.route('/getQuestion', methods=['POST'])
 def get_question():
     ret = {}
+
+    conn = connect_to_database()
 
     try:
         content = request.get_json()
@@ -59,9 +66,12 @@ def get_question():
 
         ret['answers'] = answers
         ret['success'] = True
+
+        conn.close()
         return jsonify(ret)
 
     except mariadb.Error as e:
+        conn.close()
         print("{}".format(e))
         ret['success'] = False
         return jsonify(ret)
@@ -69,6 +79,7 @@ def get_question():
 @app.route('/leaderboard', methods=['POST'])
 def leaderboard():
     ret = {}
+    conn = connect_to_database()
     try:
         cursor = conn.cursor()
 
@@ -88,9 +99,11 @@ def leaderboard():
 
         ret['leaderboard'] = leaderboard_arr
         ret['success'] = True
+        conn.close()
         return jsonify(ret)
 
     except mariadb.Error as e:
+        conn.close()
         print("{}".format(e))
         ret['success'] = False
         return jsonify(ret)
@@ -98,7 +111,7 @@ def leaderboard():
 @app.route('/newScore', methods=['POST'])
 def new_score():
     ret = {}
-
+    conn = connect_to_database()
     try:
         content = request.get_json()
         player_name = content['player_name']
@@ -116,8 +129,10 @@ def new_score():
         conn.commit()
 
         ret['success'] = True
+        conn.close()
         return jsonify(ret)
     except mariadb.Error as e:
+        conn.close()
         print("{}".format(e))
         ret['success'] = False
         return jsonify(ret)
