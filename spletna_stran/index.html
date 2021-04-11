@@ -32,7 +32,17 @@
 
     <div class="main-div">
         <h1>Naučite se o spletni varnosti.</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <div style="display: flex; justify-content: center; align-items: center; padding-left: 20px;background: rgb(25,25,25);
+        background: radial-gradient(circle, rgba(25,25,25,0.8211659663865546) 0%, rgba(60,60,60,0.10127801120448177) 100%); ">
+            <p class="gameDesc" autocapitalize="sentences" readonly>
+                Aplikacija je zasnovana podobno kot Milijonar. Spodaj lahko vidite 10 različnih stopenj vprašanj (težavnosti 1 - 10). 
+                Ko kliknete na odbrto težavnost, se bo prikazalo vprašanje z večimi odgovori. 
+                V kolikor boste odgovorili pravilno, boste lahko nadaljevali z večjo težavnostjo. 
+                V kolikor pa boste odgovorili napačno, pa se igra konča. 
+                V tem primeru boste lahko svoj rezlutat shranili v skupno lestvico z pritiskom na gumb +.
+                Potem lahko resetirate igro in igrate ponovno.
+            </p>
+        </div>
         <div class="cards-group">
             <button id="1" class="card" onclick="getQuestionVal(1)">1</button>
             <button id="2" disabled class="card" onclick="getQuestionVal(2)">2</button>
