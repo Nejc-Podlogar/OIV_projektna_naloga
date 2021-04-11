@@ -24,23 +24,26 @@
             </div>
             <button class="resetScore" type="reset" onclick="resetCounter()"><i class="lni lni-reload"></i></button>
         </div>
-        <button id="scoreBoard" class="scoreBoard" onclick="buildList(true)">Lestvica</button>
+        <div id="scoreDiv" class="scoreDiv">
+            <button id="newScore" class="iconBtn" onclick="addScoreForm()" disabled><i class="lni lni-plus"></i></button>
+            <button id="scoreBoard" class="scoreBoard" onclick="buildList(true)">Lestvica</button>
+        </div>
     </div>
 
     <div class="main-div">
-        <h1>Naučite se o spletnih napadih.</h1>
+        <h1>Naučite se o spletni varnosti.</h1>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
         <div class="cards-group">
-            <button id="1" class="card" onclick="getQuestion(1)">1</button>
-            <button id="2" disabled class="card" onclick="getQuestion(2)">2</button>
-            <button id="3" disabled class="card" onclick="getQuestion(3)">3</button>
-            <button id="4" disabled class="card" onclick="getQuestion(4)">4</button>
-            <button id="5" disabled class="card" onclick="getQuestion(5)">5</button>
-            <button id="6" disabled class="card" onclick="getQuestion(6)">6</button>
-            <button id="7" disabled class="card" onclick="getQuestion(7)">7</button>
-            <button id="8" disabled class="card" onclick="getQuestion(8)">8</button>            
-            <button id="9" disabled class="card" onclick="getQuestion(9)">9</button>            
-            <button id="10" disabled class="card" onclick="getQuestion(10)">10</button>            
+            <button id="1" class="card" onclick="getQuestionVal(1)">1</button>
+            <button id="2" disabled class="card" onclick="getQuestionVal(2)">2</button>
+            <button id="3" disabled class="card" onclick="getQuestionVal(3)">3</button>
+            <button id="4" disabled class="card" onclick="getQuestionVal(4)">4</button>
+            <button id="5" disabled class="card" onclick="getQuestionVal(5)">5</button>
+            <button id="6" disabled class="card" onclick="getQuestionVal(6)">6</button>
+            <button id="7" disabled class="card" onclick="getQuestionVal(7)">7</button>
+            <button id="8" disabled class="card" onclick="getQuestionVal(8)">8</button>            
+            <button id="9" disabled class="card" onclick="getQuestionVal(9)">9</button>            
+            <button id="10" disabled class="card" onclick="getQuestionVal(10)">10</button>            
         </div>
     </div>
 
@@ -60,10 +63,46 @@
     </div>
 
     <!-- Question popUp -->
-    <div class="qPopUp">
+    <div class="fullScreen">
+        <div class="qPopUp">
+            <h1 id="question" class="question"></h1>
+            <div id="answers" class="answers">
 
+            </div>
+            <div id="description" class="description">
+                <div id="correctBox" class="correctBox">
+                    <h6>Pravilen odgovor: </h6>
+                    <p id="resCorrectVal"></p>
+                </div>
+                <div id="descBox">
+                    <h6>Kratka obrazložitev:</h6>
+                    <div>
+                        <p id="descriptionText"></p>
+                    </div>
+                </div>
+            </div>
+            <div id="submitButtons" class="submitButtons">
+                <button id="cancelQ" class="closeBtn" style="background-color: rgb(173, 23, 23); border-color: rgb(141, 18, 18);" onclick="closeQuestion(false)">Prekliči</button>
+                <button disabled id="nextQ" class="closeBtn" style="width: auto !important; display: flex; align-items: center;" onclick="closeQuestion(true)">Naslednji <i style="font-size: 20px; margin-left: 5px;" class="lni lni-arrow-right"></i></button>
+            </div>
+        </div>
     </div>
 
+    <!-- New Score pop-up -->
+    <div class="userScore">
+        <form id="newScorePopUp" class="newScorePopUp" onsubmit="addScore(); return false">
+            <label for="iname">Ime/vzdevek:</label>
+            <input type="text" id="iname" name="iname" placeholder="vzdevek...">
+    
+            <label for="iscore">Ocena:</label>
+            <input type="text" id="iscore" name="iscore" readonly>
+    
+            <label for="itime">Potrebovan čas: (s)</label>
+            <input type="text" id="itime" name="itime"readonly>
+    
+            <input type="submit" value="Dodaj">
+        </form>
+    </div>
 
 </body>
 </html>

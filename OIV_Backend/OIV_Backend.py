@@ -8,9 +8,9 @@ CORS(app)
 
 conn = mariadb.connect(
     user="root",
-    password="admin123",
+    password="ynpXyi2NmKARwX",
     host="127.0.0.1",
-    port=5342,
+    port=3306,
     database="oivprojektna"
 )
 
@@ -20,6 +20,7 @@ def get_question():
 
     try:
         content = request.get_json()
+        print(content)
         difficulty = content['difficulty']
 
         if (difficulty is None):
@@ -41,6 +42,7 @@ def get_question():
         cursor.execute(sql)
 
         data_answers = cursor.fetchall()
+        random.shuffle(data_answers)
 
         question = {}
         question['question'] = data_questions[random_index][1]

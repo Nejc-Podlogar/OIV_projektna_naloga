@@ -1,67 +1,49 @@
-let scoreVal = "0000"
+let scoreVal = 0
+let url = "http://127.0.0.1:5436"
+let globalDifficulty;
+let globalTime = 0;
 
 $(document).ready(()=>{
     $("#liveScore").html(scoreVal);
     console.log(scoreVal);
     
     $("#scoreBoard").prop('disabled', false);
+
+    $.ajaxSetup({
+        headers: {
+            'content-type': "application/json; charset=utf-8"
+        }
+    })
+
+    
+
 }) 
 
 /** Resetiramo counter na vrednost 0 */
 function resetCounter(){
-    $("#liveScore").html(scoreVal);
+    scoreVal = 0;
+    console.log("Resetiram")
+    console.log(globalDifficulty)
+    location.reload(true);
 }
 
-function getQuestion(numbered){
-
-    // Pridobim podatke za vprašanje
-    // $.post("127.0.0.1:5436/getQuestion", {difficulty: numbered}, (result) => {
-    //     openQuestionPopUp(result);
-    // });
-
-    //Premikam se naprej na naslednje vprašanje
-    switch (numbered){
-        case 1:
-            $("#1").prop('disabled', true);
-            $("#2").prop('disabled', false);
-            break;
-        case 2:
-            $("#2").prop('disabled', true);
-            $("#3").prop('disabled', false);
-            break;
-        case 3:
-            $("#3").prop('disabled', true);
-            $("#4").prop('disabled', false);
-            break;
-        case 4:
-            $("#4").prop('disabled', true);
-            $("#5").prop('disabled', false);
-            break;
-        case 5:
-            $("#5").prop('disabled', true);
-            $("#6").prop('disabled', false);
-            break;
-        case 6:
-            $("#6").prop('disabled', true);
-            $("#7").prop('disabled', false);
-            break;
-        case 7:
-            $("#7").prop('disabled', true);
-            $("#8").prop('disabled', false);
-            break;
-        case 8:
-            $("#8").prop('disabled', true);
-            $("#9").prop('disabled', false);
-            break;
-        case 9:
-            $("#9").prop('disabled', true);
-            $("#10").prop('disabled', false);
-            break;
-        case 10:
-            $("#10").prop('disabled', true);
-            $("#1").prop('disabled', false);
-            break;
+/**
+ * Pridobimo vprašanje ustrezne težavnosti ter ga prikažemo
+ * @param {*} numbered 
+ */
+function getQuestionVal(numbered){
+    globalDifficulty = numbered;
+    console.log(Number(numbered));
+    //Ko uporabnik začne z prvim vprašanjem, zabeležim cajt.
+    if(numbered == 1){
+        globalTime = new Date();
     }
+    // Pridobim podatke za vprašanje
+    $.post(url + "/getQuestion",JSON.stringify({difficulty: numbered}), (result) => {
+        console.log(result)
+        openQuestionPopUp(result);
+    }, 'json');
+
 }
 
 /**
@@ -70,8 +52,96 @@ function getQuestion(numbered){
  */
 function openQuestionPopUp(data){
 
+    let question = data["question"];
+    let answers = data["answers"];
+
+    //Pobrišemo prejšnje gumbe:
+    $("#answers").empty();
+    $("#description").css('display', 'none');
+
+
+    // Nastavimo vrednosti v pop up polje
+    $("#question").text(question["question"])
+
+    //Zgradi možne odgovore
+    for(let i = 0; i < answers.length; i++){
+        console.log(i);
+        let singleAnsw = answers[i];
+        $("#answers").append(`
+            <button id="${i}answer" class="btnAnswer" onclick="answerSelected(${singleAnsw["isCorrect"]}, ${answers.length}, ${i})">${singleAnsw["answer"]}</button>
+        `);
+
+        //Nastavim pravilen rezulatat v razlagi.
+        if(singleAnsw["isCorrect"] == 1){
+            $("#resCorrectVal").text(singleAnsw["answer"]);
+        }
+    }
+
+    $("#descriptionText").text(question["description"]);
+
+    $(".fullScreen").css('display', 'block')
+    $(".qPopUp").css('display', 'flex')
+
 }
 
+function answerSelected(isCorrect, allAnsw, currAnsw){
+    
+    for(let i = 0; i < allAnsw; i++){
+        if(i != currAnsw){
+            $(`#${i}answer`).prop('disabled', true);
+        }
+    }
+    
+    //Prikažemo obrazložitev
+    $("#description").css('display', 'block')
+    if(isCorrect == 0){
+        $("#correctBox").css('display', 'flex');
+    }else{
+        $("#correctBox").css('display', 'none');
+
+    }
+    
+
+    
+    if(isCorrect == 1){
+        scoreVal += 100;
+        
+        //Gremo na naslednje vprašanje
+        $("#liveScore").html(scoreVal);
+        if(globalDifficulty != 10){
+            $(`#${globalDifficulty}`).prop('disabled', true);
+            $(`#${globalDifficulty + 1}`).prop('disabled', false);
+        }else{
+            $(`#${globalDifficulty}`).prop('disabled', true);
+            $("#newScore").prop('disabled', false);
+            $(".resetScore").addClass("nextStep");
+            let endTime = new Date(); 
+            globalTime = (endTime - globalTime) / 1000;
+        }
+    }else{
+        $(`#${globalDifficulty}`).prop('disabled', true);
+        $("#newScore").prop('disabled', false);
+        $(".resetScore").addClass("nextStep"); 
+        let endTime = new Date(); 
+        globalTime = (endTime - globalTime) / 1000;
+    }
+    
+    $("#cancelQ").prop('disabled', true)
+    $("#nextQ").prop('disabled', false)
+}
+
+/**
+ * Zaprem vprašanje.
+ * Argument je naslednja vrednost.
+ * @param {*} nextVal 
+ */
+function closeQuestion(nextVal){
+
+    $(".fullScreen").css('display', 'none')
+    $(".qPopUp").css('display', 'none')
+    $("#cancelQ").prop('disabled', false)
+    $("#nextQ").prop('disabled', true)
+}
 
 /**
  * Funkcija dobi zgenerira seznam vseh shranjenih igralcev in jih prikaže.
@@ -85,34 +155,82 @@ function buildList(val){
         $('#scoreBoard').prop('disabled', false);
         return;
     }
-
-    let list = [
-        {'ocena': 1, 'oseba': 'Nejc'},
-        {'ocena': 2, 'oseba': 'David'},
-        {'ocena': 3, 'oseba': 'Jakob'}
-    ];
-    $('#fullList').empty();
-    $("#scoreList").append($('<ul id="fullList"></ul>'));
     
-    console.log("append items");
-    for(let i = 0; i < list.length; i++){
-        $('#fullList').append(
-            $(`
-                <li>
-                <div class="listLine">
-                <div class="smallHead">${i + 1}</div>
-                <div>${list[i]['ocena']}</div>
-                <div>${list[i]['oseba']}</div>
-                <div></div>
-                </div>
-                </li>
-            `)
-        );
-    }
+    $.post(url + "/leaderboard", (result) => {
+        console.log(result);
+        if(result["success"] == false){
+            alert("Napaka pri pridobivanju podatkov.");
+            return;
+        }
     
+        let list = result["leaderboard"];
+        $('#fullList').empty();
+        $("#scoreList").append($('<ul id="fullList"></ul>'));
+        
+        console.log("append items");
+        for(let i = 0; i < list.length; i++){
+            $('#fullList').append(
+                $(`
+                    <li>
+                    <div class="listLine">
+                    <div class="smallHead">${i + 1}</div>
+                    <div>${list[i]['score']}</div>
+                    <div>${list[i]['player_name']}</div>
+                    <div>${list[i]['time']}</div>
+                    </div>
+                    </li>
+                `)
+            );
+        }
+        
+    
+        $(".scorePopUp").css('display', 'flex');
+        $('#scoreBoard').prop('disabled', true);
+    })
 
-    $(".scorePopUp").css('display', 'flex');
-    $('#scoreBoard').prop('disabled', true);
 }
 
+/**
+ * Dodamo nov rezultat v bazo oz. na lestvico.
+ */
+function addScore(){
 
+    let player_name = $("#iname").val();
+    if(player_name != ""){
+        //Shranimo novo vrednost v bazo.
+        $.post(url + "/newScore", JSON.stringify({player_name: player_name, score: scoreVal, time: globalTime}), (result) => {
+
+            console.log(result);
+            //V koliko je bilo shranjevanje uspešno to izpišem in zaprem formo.
+            if(result["success"] == true){
+
+                alert("Uspešno shranjen rezultat");
+                $(".userScore").css('display', 'none');
+                $("#newScore").prop('disabled', false);
+
+            }else{
+                alert("Napaka pri shranjevanju rezultata");
+            }
+
+
+        },'json')
+    }else{
+        alert("Vnesi svoje ime oziroma vzdevek."); //V kolikor uporabnik ni vnesel imena.
+    }
+
+
+}
+
+/**
+ * Prikažemo popUp za dodajanje vrednosti.
+ */
+function addScoreForm(){
+
+    $("#newScore").prop('disabled', true);
+    console.log("dodajam rezultat");
+    console.log(scoreVal);
+    $("#iscore").val(scoreVal); //Nastavim vrednost rezultat.
+    $("#itime").val(globalTime); //Nastavim vrednost čas.
+    $(".userScore").css('display', 'block'); //Prikažem formo.
+
+}
