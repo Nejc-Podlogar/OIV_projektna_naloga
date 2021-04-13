@@ -179,14 +179,15 @@ CREATE TABLE IF NOT EXISTS `leaderboard` (
   `time` float unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table oivprojekt.leaderboard: ~2 rows (approximately)
 DELETE FROM `leaderboard`;
 /*!40000 ALTER TABLE `leaderboard` DISABLE KEYS */;
 INSERT INTO `leaderboard` (`ID`, `player_name`, `score`, `time`) VALUES
 	(1, 'Jakob Jošt', 100, 11.1),
-	(2, 'David Kovač', 69, 54.6);
+	(2, 'David Kovač', 69, 54.6),
+	(3, 'Alen Cvahte', 990, 356);
 /*!40000 ALTER TABLE `leaderboard` ENABLE KEYS */;
 
 -- Dumping structure for table oivprojekt.questions
@@ -204,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
 DELETE FROM `questions`;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
 INSERT INTO `questions` (`ID`, `question`, `difficulty`, `description`) VALUES
-	(1, 'Kaj so osnovni principi informacijske varnosti?', 1, 'Principe informacijske varnosti, imenujemo tudi CIA Triada in so napotnice za informacijsko varnost v podjetju oz. organizaciji.'),
+	(1, 'Kaj so osnovni principi informacijske varnosti?', 1, 'Principe informacijske varnosti, imenujemo tudi trojica CIA(confidentiality, integrity and availability) in so napotnice za informacijsko varnost v podjetju oz. organizaciji.'),
 	(2, 'Kaj je drugo ime za zaupnost podatkov?', 1, 'Drug izraz za zaupnost podatkov je zasebnost informacij. Doslednost, natančnost in zaupnost informacije pa govorijo o celovitosti informacij oz. podatkov.'),
 	(3, 'Katera varnostna implementacija uporablja biometrijo?', 1, 'Biometrija je proces zbiranja, proučevanja in shranjevanja podatkov o posameznikovih fizičnih lastnostih z namenom identifikacije in avtentikacije.'),
 	(4, 'Katera metoda se uporablja za preverjanje celovitosti podatkov?', 2, 'Vrednost kontrolne vsote bloka podatkov se izračuna in prenese s podatki. Po prejemu podatkov se ponovno izvede zgoščevanje kontrolne vsote. Izračunana vrednost se primerja s poslano vrednostjo, da se preveri celovitost podatkov.'),
@@ -227,7 +228,7 @@ INSERT INTO `questions` (`ID`, `question`, `difficulty`, `description`) VALUES
 	(21, 'Katero od vprašanj o piškotkih ne velja?', 5, 'HTTP piškotek je majhen delček podatkov, ki ga strežnik pošlje spletnemu brskalniku. Brskalnik ga lahko shrani in ga pošlje s prihodnjimi zahtevami spletnega mesta. Upravlja seje; prijave, nakupovalni vozički, rezultati iger ali katero koli drugo stanje seje. Skrbi za personalizacijo; uporabniške nastavitve, teme in druge nastavitve. Sledi, snemanja in analiza vedenja uporabnikov.'),
 	(22, 'Kaj ni vprašanje Unix modela varnosti politike istega izvora?', 6, 'Pri Unix modelu varnosti nas zanima osebek (kdo?), predmeti (kaj?), in dostopne operacije (kako?).'),
 	(23, 'Kaj je namen politike istega izvora za HTTP odgovre?', 6, 'SOP preprečuje, da bi Javascript na spletnem mestu napadalec.com neposredno pregledoval odgovore HTTP (tj. piksle v sliki), ne preprečuje pa, da nekdo izvede zahtevek.'),
-	(24, 'Zakaj varujemo povezavo (HTTPS)?', 7, 'Povezavo varuemo pred vrivanjem, prestrezanjem in spreminjanjem.'),
+	(24, 'Zakaj varujemo povezavo (HTTPS)?', 7, 'Povezavo varujemo pred vrivanjem, prestrezanjem in spreminjanjem.'),
 	(25, 'Na katerem od naštetih nivojev se ne izvaja informacijska varnost?', 6, 'Informacijska varnost se izvaja na treh nivojih: Fizični/tehnični nivo (products - physical security), Nivo procesov/organizacijskih procesov (procedures - organizational security), Nivo posameznika/uporabnika (people - personal security).'),
 	(26, 'Kako deluje lokacijsko prestopno ponarejanje (spletnih) zahtevkov(Cross-Site RequestForgery(CSRF)) ?', 8, 'V napadu CSRF je uporabnik prevaran, da na žrtvenemu spletnemu mestu posreduje spletno zahtevo „v svojem imenu“.'),
 	(27, 'Kateri so dejavniki klasifikacije informacij?', 7, 'Dejavniki, ki vplivajo na to katero informacijo se označi kot zaupno, so: vrednost, starost informacije, ter podatek o tem ali je ta informacija morda že javna.'),
