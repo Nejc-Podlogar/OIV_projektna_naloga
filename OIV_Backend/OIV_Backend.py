@@ -11,12 +11,12 @@ conn = None
 def connect_to_database():
     return mariadb.connect(
         user="root",
-        password="admin123",
+        password="",
         # password="ynpXyi2NmKARwX",
         host="127.0.0.1",
-        port=5342,
-        # port=3306,
-        database="oivprojektna"
+        #port=5342,
+        port=3306,
+        database="oivprojekt"
     )
 
 @app.route('/getQuestion', methods=['POST'])
@@ -138,4 +138,4 @@ def new_score():
         return jsonify(ret)
 
 if __name__ == "__main__":
-    app.run("127.0.0.1", 5436, True)
+    app.run("127.0.0.1", 3200, True)
